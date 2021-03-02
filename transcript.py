@@ -21,14 +21,37 @@ letters_dict_2 = {'а': 'f', 'б': ',', 'в': 'd', 'г': 'u', 'д': 'l', 'е': '
                 'Ш': 'I', 'Щ': 'O', 'Ь': 'M', 'Ы': 'S', 'Ъ': ']', 'Э': "'", 'Ю': '.', 'Я': 'Z'}
 
 C = '#c7bcf3'
+B = 2
 
 class Translater:
     def __init__(self, root):
-        self.entry_int = tk.Entry(root)
+        self.lab_text_int = tk.Label(root, text='Password: ')
+        self.entry_int = tk.Entry(root, width=55, font=15)
+        self.btn_paste_in = tk.Button(root, text='Paste', bd=B, bg=C, command=self.past_text)
+        self.lab_text_int.grid(row=0, column=0, sticky='we')
+        self.entry_int.grid(row=0, column=1, sticky='we')
+        self.btn_paste_in.grid(row=0, column=2, sticky='we')
 
 
-        self.lab_out1 = tk.Label(root)
-        self.lab_out2 = tk.Label(root)
+        self.btn_apply = tk.Button(root, text='Apply', bd=B, bg=C, command=self.translate)
+        self.btn_apply.grid(row=1, column=1, sticky='we')
+
+        self.lab_text_out1 = tk.Label(root, text='Transcription 1: ')
+        self.lab_out1 = tk.Label(root, text='поле для результата', width=55, font=15)
+        self.btn_copy_out1 = tk.Button(root, text='Copy 1', bd=B, bg=C, command=self.copy_text1)
+        self.lab_text_out1.grid(row=2, column=0)
+        self.lab_out1.grid(row=2, column=1)
+        self.btn_copy_out1.grid(row=2, column=2)
+
+        self.lab_text_out2 = tk.Label(root, text='Transcription 2: ')
+        self.lab_out2 = tk.Label(root, text='поле для результата', width=55, font=15)
+        self.btn_copy_out2 = tk.Button(root, text='Copy 2', bd=B, bg=C, command=self.copy_test2)
+        self.lab_text_out2.grid(row=3, column=0)
+        self.lab_out2.grid(row=3, column=1)
+        self.btn_copy_out2.grid(row=3, column=2)
+
+        self.btn_clear = tk.Button(root, text='Clear', bd=B, bg=C, command=self.clearing)
+        self.btn_clear.grid(row=4, column=1, sticky='we')
 
     def clearing(self):
         self.entry_int.delete(0, 'end')
